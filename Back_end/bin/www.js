@@ -5,15 +5,18 @@
  */
 
 var app = require('../App');
-var debug = require('debug')('AppTurismo:server');
+var debug = require('debug')('appturismo:server');
 var http = require('http');
 require("dotenv").config();
+const MONGO_URI = process.env.MONGO_URI;
+const MONGO_HOST = process.env.MONGO_HOST;
+const MONGO_DATABASE = process.env.MONGO_DATABASE;
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
 /**
@@ -29,7 +32,6 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-app.console("conectado");
 
 /**
  * Normalize a port into a number, string, or false.

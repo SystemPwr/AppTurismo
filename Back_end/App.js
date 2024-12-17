@@ -1,12 +1,3 @@
-const http = require('http');
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World! :(\n');
-});
-server.listen(3000, () => {
-  console.log('Servidor rodando em http://localhost:3000/');
- });
  var createError = require('http-errors');
  var express = require('express');
  var path = require('path');
@@ -16,7 +7,7 @@ server.listen(3000, () => {
  
  //var salasRouter = require('./routes/salas');
  var clientesRouter = require('./routes/clientesRoute');
- //var funcionariosRouter = require('./routes/funcionarios');
+ var pontos_turisticoRouter = require('./routes/pontos_turisticosRouter');
  //var reservasRouter = require('./routes/reservas');
  
  var app = express();
@@ -37,7 +28,7 @@ server.listen(3000, () => {
  
  //app.use('/salas', salasRouter);
  app.use('/clientes', clientesRouter);
- //app.use('/funcionarios', funcionariosRouter);
+ app.use('/pontos_turisticos',  pontos_turisticosRouter);
  //app.use('/reservas', reservasRouter);
  
  // catch 404 and forward to error handler

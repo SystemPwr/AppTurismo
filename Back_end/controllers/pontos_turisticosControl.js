@@ -1,8 +1,8 @@
-const Cliente = require('../models/clientesModel.js')
+const Cliente = require('../models/pontos_turisticosModel')
 
 exports.getClientes = async(req, res) => {
     try {
-        const Clientes = await Cliente.ClienteModel.find();
+        const Clientes = await Cliente.pontos_turisticoModel.find();
         res.json(Clientes)
         console.log("resposta do banco "+ Clientes);
     }catch(error) {
@@ -13,7 +13,7 @@ exports.getClientes = async(req, res) => {
 
 exports.getoneCliente = async (req, res) => {   
   try {;
-    res.status(201).json(await Cliente.ClienteModel.findById(req.params.id));
+    res.status(201).json(await Cliente.pontos_turisticoModel.findById(req.params.id));
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -21,7 +21,7 @@ exports.getoneCliente = async (req, res) => {
 
 exports.createCliente = async (req, res) => {   
     try {;
-      res.status(201).json(await Cliente.ClienteModel.create(req.body));
+      res.status(201).json(await pontos_turisticos.AppturismoModel.create(req.body));
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -29,7 +29,7 @@ exports.createCliente = async (req, res) => {
 
   exports.updateCliente = async (req, res) => {   
     try {;
-      res.status(201).json(await Cliente.ClienteModel.findByIdAndUpdate(req.params.id,req.body));
+      res.status(201).json(await pontos_turisticoModel.findByIdAndUpdate(req.params.id,req.body));
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -37,7 +37,7 @@ exports.createCliente = async (req, res) => {
 
   exports.deleteCliente = async (req, res) => {   
     try {;
-      res.status(201).json(await Cliente.ClienteModel.findByIdAndDelete(req.params.id));
+      res.status(201).json(await pontos_turisticos.pontos_turisticoModel.findByIdAndDelete(req.params.id));
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -47,13 +47,13 @@ exports.createCliente = async (req, res) => {
       try {
 
         const cpf = parseInt(req.params.id); // CPF a ser pesquisado
-        const cliente = await Cliente.ClienteModel.findOne({ cpf: cpf }); // Procura cliente por CPF        
+        const pontos_turistico = await pontos_turisticos.pontos_turisticoModel.findOne({ cpf: cpf }); // Procura cliente por CPF        
 
-        if (!cliente) {
+        if (!pontos_turisticos) {
           return res.status(404).json({ message: "Cliente não encontrado" });
     }
 
-    res.status(200).json(cliente);
+    res.status(200).json(pontos_turisticos);
       } catch (error) {
         res.status(400).json({ message: error.message });
       }

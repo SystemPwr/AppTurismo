@@ -14,7 +14,7 @@ mongoose.connect('mongodb+srv://aiorosdesagitario13:gVlfM6GLCB2MmJj5@cluster0.6b
 var Schema = mongoose.Schema;
 
 // Definindo o esquema do cliente
-const cliente = new Schema({
+const pontos_turisticos = new Schema({
   cpf        : { type: Number, required: true },
   nome       : { type: String, required: true },
   cep        : { type: Number },
@@ -23,7 +23,7 @@ const cliente = new Schema({
 });
 
 // Criando o modelo baseado no esquema
-const ClienteModel = mongoose.model('clientes', cliente);
+const pontos_turisticosModel = mongoose.model('pontos_turisticos', pontos_turisticos);
 
 // Exportando o modelo
-module.exports = { ClienteModel };
+module.exports = { pontos_turisticosModel };
