@@ -1,29 +1,24 @@
 const mongoose = require('mongoose');
 
-// Conexão com o MongoDB sem as opções descontinuadas
-mongoose.connect('mongodb+srv://aiorosdesagitario13:gVlfM6GLCB2MmJj5@cluster0.6b4io.mongodb.net/Appturismo', {
-  useNewUrlParser: true,  // Se necessário, mas apenas para versões antigas do driver
-})
-.then(() => {
-  console.log('Conectado ao MongoDB com sucesso!');
-})
-.catch((err) => {
-  console.error('Erro na conexão com o MongoDB:', err);
-});
+//require("dotenv").config();
+//const MONGO_URI = process.env.MONGO_URI;
+
+mongoose.connect("mongodb+srv://aiorosdesagitario13:gVlfM6GLCB2MmJj5@cluster0.6b4io.mongodb.net/Appturismo", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conectado ao MongoDB com sucesso!'))
+  .catch((error) => console.error('Erro ao conectar ao MongoDB:', error));
 
 var Schema = mongoose.Schema;
 
-// Definindo o esquema do cliente
-const cliente = new Schema({
-  cpf        : { type: Number, required: true },
-  nome       : { type: String, required: true },
-  cep        : { type: Number },
-  telefone   : { type: Number, required: true },
-  email      : { type: String, required: true },
-});
+const cliente = new Schema ({
 
-// Criando o modelo baseado no esquema
+    cpf        : { type:Number, required: true},
+    nome       : { type:String, required: true},
+    cep        : { type:Number },
+    telefone   : { type:Number, required: true},
+    email      : { type:String, required: true}
+})
+
 const ClienteModel = mongoose.model('clientes', cliente);
 
-// Exportando o modelo
-module.exports = { ClienteModel };
+
+module.exports = {ClienteModel}
